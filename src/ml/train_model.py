@@ -7,6 +7,8 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report
+import json
 
 def generate_synthetic_data(filepath):
     np.random.seed(42)
@@ -77,12 +79,21 @@ def train_and_save_model(data_path, model_path):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     
     clf.fit(X_train, y_train)
+    y_pred = clf.predict(X_test)
     score = clf.score(X_test, y_test)
+    report = classification_report(y_test, y_pred, output_dict=True)
+    
     print(f"✅ Model trained! Test Accuracy: {score:.2f}")
     
     os.makedirs(os.path.dirname(model_path), exist_ok=True)
     joblib.dump(clf, model_path)
+    
+    report_path = os.path.join(os.path.dirname(model_path), "evaluation_report.json")
+    with open(report_path, "w") as f:
+        json.dump(report, f, indent=4)
+        
     print(f"✅ Model saved to {model_path}")
+    print(f"✅ Evaluation report saved to {report_path}")
 
 if __name__ == "__main__":
     train_and_save_model(
