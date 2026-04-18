@@ -6,7 +6,7 @@ from src.rag.vectorstore import retrieve_strategies
 
 def get_llm():
     # Make sure GROQ_API_KEY is in the env
-    return ChatGroq(model="llama3-70b-8192", temperature=0.2)
+    return ChatGroq(model="llama-3.3-70b-versatile", temperature=0.2)
 
 def clean_json_response(text: str) -> str:
     text = text.strip()
