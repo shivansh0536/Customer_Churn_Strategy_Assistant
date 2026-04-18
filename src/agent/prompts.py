@@ -46,7 +46,9 @@ Ensure you structure the final response exactly in the following mandatory JSON 
     }}
   ],
   "Reasoning": "Explain WHY these recommendations are given based on the customer data.",
-  "Confidence Score": "High/Medium/Low"
+  "Confidence Score": "High/Medium/Low",
+  "Sources": ["List 2-3 specific best practice methods identified from the retrieved strategies as the sources of your recommendations"],
+  "Disclaimer": "This is an AI-generated strategy recommendation. All business and ethical disclosures apply. Review before deploying."
 }}
 
 Note: Only provide the valid JSON. No markdown backticks mapping the JSON, just the raw JSON text. Make sure to interpolate the required fields.
