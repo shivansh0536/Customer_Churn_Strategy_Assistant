@@ -1,4 +1,5 @@
 import json
+import re
 from langchain_groq import ChatGroq
 from src.agent.state import AgentState
 from src.agent.prompts import RISK_ANALYSIS_PROMPT, STRATEGY_PLANNING_PROMPT
@@ -9,13 +10,17 @@ def get_llm():
     return ChatGroq(model="llama-3.3-70b-versatile", temperature=0.2)
 
 def clean_json_response(text: str) -> str:
-    text = text.strip()
-    if text.startswith("```json"):
-        text = text[7:]
-    if text.startswith("```"):
-        text = text[3:]
-    if text.endswith("```"):
-        text = text[:-3]
+    # Try to find a JSON block using regex
+    match = re.search(r'```(?:json)?(.*?)```', text, re.DOTALL)
+    if match:
+        return match.group(1).strip()
+    
+    # If no markdown block is found, extract everything from first '{' to last '}'
+    start_idx = text.find('{')
+    end_idx = text.rfind('}')
+    if start_idx != -1 and end_idx != -1:
+        return text[start_idx:end_idx+1].strip()
+        
     return text.strip()
 
 def risk_analyzer_node(state: AgentState) -> AgentState:
