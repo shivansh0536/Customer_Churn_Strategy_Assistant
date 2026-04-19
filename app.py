@@ -456,21 +456,19 @@ if analyze_button:
       
       # --- Output Presentation Layer - Structured like the reference image list ---
       # Diagnostic Data
-      st.markdown("""
+      drivers_html = "".join([f"<p style='margin: 4px 0;'>• {driver}</p>" for driver in risk_profile.get("Key Drivers", [])])
+      
+      st.markdown(f"""
       <div class='action-row'>
         <div class='num-badge'>1</div>
         <div>
           <h4 style='margin:0 0 8px 0; color:#0f172a'>Risk Matrix & Key Drivers</h4>
           <div class='action-desc'>
-      """, unsafe_allow_html=True)
-      
-      for driver in risk_profile.get("Key Drivers", []):
-        st.markdown(f"• {driver}")
-      
-      st.markdown(f"""
+            {drivers_html}
           </div>
         </div>
       </div>
+      """, unsafe_allow_html=True)
       
       <div class='action-row'>
         <div class='num-badge'>2</div>
