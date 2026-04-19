@@ -96,8 +96,8 @@ streamlit run app.py
 | Member | Contribution |
 | :--- | :--- |
 | **Harsha Gonela (2401010181)** | Model Development, Agent Orchestration (LangGraph), RAG Integration, Streamlit Deployment |
-| **Shivansh Upadhyaya (2401020109)** | Data Knowledge Base Construction, Feature Engineering & EDA |
-| **Gourav Tanwar (2401010173)** | ML Model Development, Scikit-Learn Pipeline Integration, UI Validation |
+| **Shivansh Upadhyaya (2401020109)** |ML Model Development, Scikit-Learn Pipeline Integration, UI Validation |
+| **Gourav Tanwar (2401010173)** |Data Knowledge Base Construction, Feature Engineering & EDA |
 
 ---
 
