@@ -11,7 +11,7 @@ In **Milestone 2**, the system is extended into an **Agent-Based AI Application 
 
 ---
 
-## 🛠️ Milestone 1: ML-Based Customer Churn Prediction
+##  Milestone 1: ML-Based Customer Churn Prediction
 
 Financial institutions face significant challenges in retaining customers. Manual identification of at-risk customers is time-consuming, inconsistent, and reactive. This automated customer churn scoring system uses machine learning algorithms to classify customers by churn likelihood.
 
@@ -57,7 +57,7 @@ This system generates AI-assisted recommendations. All outputs must be
 reviewed by a qualified relationship manager before customer communication. 
 Predictions are probabilistic and not guarantees of customer behavior.
 
-## 👥 Team Contribution
+##  Team Contribution
 
 | Member | Contribution |
 | :--- | :--- |
@@ -67,5 +67,5 @@ Predictions are probabilistic and not guarantees of customer behavior.
 
 ---
 
-## 📜 Ethical AI Disclosure
+##  Ethical AI Disclosure
 This framework utilizes both deterministic ML thresholds and generative artificial intelligence frameworks to plan user actions. All generated business metrics, reasoning profiles, and action vectors represent automated programmatic insights. Proper manual Quality Assurance (QA) audits must be conducted prior to enacting any financial retention maneuvers.

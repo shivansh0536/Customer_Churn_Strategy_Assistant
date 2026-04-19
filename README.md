@@ -13,7 +13,7 @@ In **Milestone 2**, the system is extended into an **Agent-Based AI Application 
 
 ---
 
-## 🛠️ Milestone 1: ML-Based Customer Churn Prediction
+##  Milestone 1: ML-Based Customer Churn Prediction
 
 Financial institutions face significant challenges in retaining customers. Manual identification of at-risk customers is time-consuming, inconsistent, and reactive. This automated customer churn scoring system uses machine learning algorithms to classify customers by churn likelihood.
 
@@ -44,7 +44,7 @@ Financial institutions face significant challenges in retaining customers. Manua
 
 ---
 
-## 🤖 Milestone 2: Agentic AI Retention Strategy Assistant
+##  Milestone 2: Agentic AI Retention Strategy Assistant
 
 Milestone 2 expands the platform by utilizing **LangGraph** (Orchestration) and **ChromaDB** (RAG) coupled with **Groq/Llama-3 LLMs** to dynamically compute retention strategies to save at-risk customers.
 
@@ -57,7 +57,7 @@ Milestone 2 expands the platform by utilizing **LangGraph** (Orchestration) and 
 
 ---
 
-## 🚀 Installation & Setup Instructions
+##  Installation & Setup Instructions
 
 **Step 1: Clone the Repository**
 ```bash
@@ -91,7 +91,7 @@ streamlit run app.py
 
 ---
 
-## 👥 Team Contribution
+##  Team Contribution
 
 | Member | Contribution |
 | :--- | :--- |
@@ -101,5 +101,5 @@ streamlit run app.py
 
 ---
 
-## 📜 Ethical AI Disclosure
+##  Ethical AI Disclosure
 This framework utilizes both deterministic ML thresholds and generative artificial intelligence frameworks to plan user actions. All generated business metrics, reasoning profiles, and action vectors represent automated programmatic insights. Proper manual Quality Assurance (QA) audits must be conducted prior to enacting any financial retention maneuvers.

@@ -46,7 +46,7 @@ def generate_synthetic_data(filepath):
     
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
     df.to_csv(filepath, index=False)
-    print(f"✅ Generated synthetic data at {filepath}")
+    print(f" Generated synthetic data at {filepath}")
     return df
 
 def train_and_save_model(data_path, model_path):
@@ -86,7 +86,7 @@ def train_and_save_model(data_path, model_path):
     score = clf.score(X_test, y_test)
     report = classification_report(y_test, y_pred, output_dict=True)
     
-    print(f"✅ Model trained! Test Accuracy: {score:.2f}")
+    print(f" Model trained! Test Accuracy: {score:.2f}")
     
     os.makedirs(os.path.dirname(model_path), exist_ok=True)
     joblib.dump(clf, model_path)
@@ -95,8 +95,8 @@ def train_and_save_model(data_path, model_path):
     with open(report_path, "w") as f:
         json.dump(report, f, indent=4)
         
-    print(f"✅ Model saved to {model_path}")
-    print(f"✅ Evaluation report saved to {report_path}")
+    print(f" Model saved to {model_path}")
+    print(f" Evaluation report saved to {report_path}")
 
 if __name__ == "__main__":
     train_and_save_model(

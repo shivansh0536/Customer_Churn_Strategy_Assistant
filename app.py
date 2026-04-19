@@ -14,7 +14,7 @@ dotenv.load_dotenv()
 # --- Page Config ---
 st.set_page_config(
     page_title="AI Customer Retention Assistant",
-    page_icon="🛡️",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -94,13 +94,13 @@ except Exception as e:
 
 # --- Application UI ---
 
-st.title("🛡️ AI Customer Retention Strategy Assistant")
+st.title(" AI Customer Retention Strategy Assistant")
 st.markdown("Predict customer churn using Scikit-Learn and generate hyper-personalized agentic retention strategies using LangGraph + ChromaDB RAG.")
 
-tab1, tab2, tab3 = st.tabs(["🚀 Retention Assistant", "🧠 Architecture & Context", "📊 Model Evaluation"])
+tab1, tab2, tab3 = st.tabs([" Retention Assistant", " Architecture & Context", " Model Evaluation"])
 
 with tab2:
-    st.header("🧠 Problem Understanding & Business Context")
+    st.header(" Problem Understanding & Business Context")
     st.markdown("""
     **Business Context:**
     Customer churn is a critical metric for subscription and service-based businesses. Retaining an existing customer is significantly cheaper than acquiring a new one. This application aims to not only predict *if* a customer will churn but also provide actionable, agentic AI-driven strategies to prevent it.
@@ -151,7 +151,7 @@ with tab2:
     st.info("Powered by LangGraph (Workflow & State), Chroma RAG, and Groq LLMs.")
 
 with tab3:
-    st.header("📊 Model Performance Evaluation Report")
+    st.header(" Model Performance Evaluation Report")
     st.markdown("Below are the evaluation metrics of the underlying Scikit-Learn model on the holdout test set.")
     report_path = "src/ml/evaluation_report.json"
     if os.path.exists(report_path):
@@ -176,7 +176,7 @@ with tab3:
         
 # --- Sidebar Inputs ---
 with st.sidebar:
-    st.header("👤 Customer Profile")
+    st.header(" Customer Profile")
     st.markdown("Enter customer details to analyze risk and generate a strategy.")
     
     age = st.slider("Age", 18, 90, 45)
@@ -194,7 +194,7 @@ with st.sidebar:
         gender = st.selectbox("Gender", ["Male", "Female"])
         has_crcard = st.selectbox("Has Credit Card?", [1, 0])
 
-    analyze_button = st.button("🚀 Analyze Risk & Plan Strategy")
+    analyze_button = st.button(" Analyze Risk & Plan Strategy")
 
 # --- Main Logic ---
 if analyze_button:
@@ -214,19 +214,19 @@ if analyze_button:
     with tab1:
         # 1. Run ML Model
         df_input = pd.DataFrame([customer_data])
-        with st.spinner("🤖 Running ML Model..."):
+        with st.spinner(" Running ML Model..."):
             churn_prob = st.session_state.model.predict_proba(df_input)[0][1]
         
         st.metric(label="Predicted Churn Risk (ML Model)", value=f"{churn_prob:.1%}")
         if churn_prob > 0.5:
-            st.error("⚠️ High Risk of Churn Identified.")
+            st.error(" High Risk of Churn Identified.")
         else:
-            st.success("✅ Customer seems stable, but let's see what the agent says.")
+            st.success(" Customer seems stable, but let's see what the agent says.")
         
         st.divider()
         
         # 2. Run Agent
-        st.subheader("🕵️ Agentic Reasoning & Retention Report")
+        st.subheader(" Agentic Reasoning & Retention Report")
         
         with st.status("Agent Workflow Running...", expanded=True) as status:
             initial_state = {
@@ -239,12 +239,12 @@ if analyze_button:
                 "error": ""
             }
             
-            st.write("🔍 Running Risk Analyzer Node...")
+            st.write(" Running Risk Analyzer Node...")
             # Step through graph (for display purposes, normally you'd just invoke)
             state = initial_state
             for output in st.session_state.graph.stream(initial_state):
                 for node_name, state_update in output.items():
-                    st.write(f"✅ Completed: **{node_name}**")
+                    st.write(f" Completed: **{node_name}**")
                     state.update(state_update)
                     
                     if node_name == "RiskAnalyzer":
@@ -268,23 +268,23 @@ if analyze_button:
             risk_level = risk_profile.get("Risk Level", "Unknown")
             color_class = "risk-high" if "High" in risk_level else ("risk-medium" if "Medium" in risk_level else "risk-low")
             
-            st.markdown(f"### 🛡️ Authorized Strategy Report")
+            st.markdown(f"###  Authorized Strategy Report")
             col1, col2, col3 = st.columns(3)
             col1.markdown(f"**Risk Level:** <span class='{color_class}'>{risk_level}</span>", unsafe_allow_html=True)
             col2.markdown(f"**Confidence:** {report.get('Confidence Score', 'Unknown')}")
             col3.markdown(f"**P(Churn):** {risk_profile.get('Churn Probability', 'N/A')}")
             
             # Drivers
-            st.markdown("#### 🚨 Key Risk Drivers:")
+            st.markdown("####  Key Risk Drivers:")
             for driver in risk_profile.get("Key Drivers", []):
                 st.markdown(f"- {driver}")
                 
             # Reasoning
-            st.markdown("#### 🧠 Agent Reasoning (Why?):")
+            st.markdown("####  Agent Reasoning (Why?):")
             st.info(report.get("Reasoning", "No reasoning provided."))
         
             # Actions
-            st.markdown("#### 🛠️ Recommended Actions:")
+            st.markdown("####  Recommended Actions:")
             actions = report.get("Recommended Actions", [])
             for act in actions:
                 st.markdown(f"""
@@ -297,7 +297,7 @@ if analyze_button:
             st.markdown("<br>", unsafe_allow_html=True)
             
             # Sources
-            st.markdown("#### 📚 Sources & Best Practices:")
+            st.markdown("####  Sources & Best Practices:")
             sources = report.get("Sources", [])
             if sources:
                 for source in sources:
