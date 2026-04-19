@@ -50,6 +50,10 @@ def retriever_node(state: AgentState) -> AgentState:
     drivers = "general retention strategies"
     
   strategies = retrieve_strategies(drivers, k=3)
+  
+  if len(strategies) == 0:
+    strategies.append("Action relies on human supervisor. No direct matching protocols identified for this specific criteria.")
+    
   state["retrieved_strategies"] = strategies
   return state
 

@@ -434,17 +434,22 @@ if analyze_button:
       st.markdown("<div class='timeline-item'><span class='timeline-icon'></span> Started execution workflow...</div>", unsafe_allow_html=True)
       
       state = initial_state
-      for output in st.session_state.graph.stream(initial_state):
-        for node_name, state_update in output.items():
-          time.sleep(0.7) # Provide visual pacing for realism
-          if node_name == "RiskAnalyzer":
-            st.markdown("<div class='timeline-item'><span class='timeline-icon'></span> <strong>RiskAnalyzer Node:</strong> Successfully isolated key churn drivers across demographics and financials.</div>", unsafe_allow_html=True)
-          elif node_name == "Retriever":
-            st.markdown(f"<div class='timeline-item'><span class='timeline-icon'></span> <strong>RAG Retriever Node:</strong> Extracted {len(state_update.get('retrieved_strategies', []))} contextual protocols from Vector Store.</div>", unsafe_allow_html=True)
-          elif node_name == "StrategyPlanner":
-            st.markdown("<div class='timeline-item'><span class='timeline-icon'></span> <strong>StrategyPlanner Node:</strong> Synthesized multi-step prescriptive retention blueprint.</div>", unsafe_allow_html=True)
-            
-          state.update(state_update)
+      try:
+        for output in st.session_state.graph.stream(initial_state):
+          for node_name, state_update in output.items():
+            time.sleep(0.7) # Provide visual pacing for realism
+            if node_name == "RiskAnalyzer":
+              st.markdown("<div class='timeline-item'><span class='timeline-icon'></span> <strong>RiskAnalyzer Node:</strong> Successfully isolated key churn drivers across demographics and financials.</div>", unsafe_allow_html=True)
+            elif node_name == "Retriever":
+              st.markdown(f"<div class='timeline-item'><span class='timeline-icon'></span> <strong>RAG Retriever Node:</strong> Extracted {len(state_update.get('retrieved_strategies', []))} contextual protocols from Vector Store.</div>", unsafe_allow_html=True)
+            elif node_name == "StrategyPlanner":
+              st.markdown("<div class='timeline-item'><span class='timeline-icon'></span> <strong>StrategyPlanner Node:</strong> Synthesized multi-step prescriptive retention blueprint.</div>", unsafe_allow_html=True)
+              
+            state.update(state_update)
+      except Exception as e:
+        status.update(label="API Connectivity Offline or Execution Failed", state="error", expanded=True)
+        st.error(f"API Connectivity or processing error occurred. Please try again later. Details: {str(e)}")
+        state["error"] = "API Limit Reached or Timeout"
             
       status.update(label="AI Orchestration Complete", state="complete", expanded=False)
       
